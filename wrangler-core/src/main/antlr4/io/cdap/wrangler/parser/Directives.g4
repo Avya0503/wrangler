@@ -140,8 +140,11 @@ numberRange
  ;
 
 value
- : String | Number | Column | Bool
- ;
+   : BYTE_SIZE
+   | TIME_DURATION
+   | STRING
+   | NUMBER
+   ;
 
 ecommand
  : '!' Identifier
@@ -311,3 +314,9 @@ fragment Int
 fragment Digit
  : [0-9]
  ;
+fragment DECIMAL : DIGIT+ ('.' DIGIT+)? ;
+fragment BYTE_UNIT : ('B' | 'KB' | 'MB' | 'GB' | 'TB') ;
+fragment TIME_UNIT : ('ms' | 's' | 'm' | 'h') ;
+
+BYTE_SIZE : DECIMAL BYTE_UNIT ;
+TIME_DURATION : DECIMAL TIME_UNIT ;
